@@ -77,9 +77,9 @@ const News = (props) => {
       <h1 className='text-center' style={{ margin: '35px 0px', marginTop: '90px' }}>News - Top Headlines - {capitalizeFirstLetter(props.category)} Category</h1>
       {loading && <Spinner />}
       <InfiniteScroll
-        dataLength={articles.length}
+        dataLength={articles.length()}
         next={fetchMoreData}
-        hasMore={articles.length !== totalResults}
+        hasMore={articles.length() !== totalResults}
         loader={<Spinner />}>
         <div className='container'>
           <div className='row'>
@@ -88,7 +88,7 @@ const News = (props) => {
                 return null
               }
               return <div className='col-md-4' key={index.url}>
-                <NewsItem title={element.title} description={element.description === null ? "No Description" : element.description.slice(0, 150)} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
+                <NewsItem title={element.title.slice(0, 100)} description={element.description === null ? "No Description" : element.description.slice(0, 150)} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name} />
               </div>
             })}
 
